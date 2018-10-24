@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>动态绑定CSS样式</title>
+    <style>
+        span{
+            background: red;
+            display: inline-block;
+            padding:10px;
+            color:#fff;
+            margin:10px 0;
+            user-select: none;
+        }
+        .changeColor span{
+            background: green;
+        }
+        .changeBgc1 span{
+            background: blueviolet;
+        }
+        .changeLength1 span:after{
+            content: "添加的文字";
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>点击切换背景色</h3>
+        <div v-bind:class="{changeColor:changeColor}" v-on:click="changeColor = !changeColor">
+            <span>Ryan</span>
+        </div> 
+
+        <h3>对象语法</h3>
+        <button @click="changeLength = !changeLength">Change Length</button>
+        <button @click="changeBgc = !changeBgc">Change BGC</button>
+        <div v-bind:class="changeState">
+            <span>Ryan's</span>
+        </div>
+    </div>
+    
+
+    <script>
+        new Vue({
+            el: '#vue-app',
+            data: {
+                changeColor: false,
+                changeLength: false,
+                changeBgc: false,
+            },
+            computed:{
+                changeState: function(){
+                    return{
+                        changeLength1: this.changeLength,
+                        changeBgc1: this.changeBgc,
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

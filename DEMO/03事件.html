@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>事件</title>
+    <style>
+        #canvas{
+            width: 600px;
+            padding: 200px 20px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>单击事件 v-on:click</h3>
+        <button v-on:click="add(1)">涨一岁</button>
+        <button v-on:click="substract(1)">减一岁</button>
+        
+        <h3>双击事件 v-dblclick</h3>
+        <button v-on:dblclick="add(10)">涨十岁</button>
+        <button v-on:dblclick="substract(10)">减十岁</button>
+        <p>我的年龄是：{{age}} 岁</p>
+
+        <h3>v-on 可以替换成 @</h3>
+        <button @click="sayHello('大家好，我是Ryan')">我是@写法</button>    
+
+        <h3>访问原生DOM事件 $event</h3>
+        <div id="canvas" v-on:mousemove="offsetXY">{{x}},{{y}}</div>
+    </div>
+
+    <script>
+        // 实例化 vue 对象
+        new Vue({
+            el: "#vue-app", // 获取根容器
+            data: {         // 设置数据
+                age: 30,
+                x: 0,
+                y: 0,
+            },
+            methods: {
+                add: function(inc){
+                    this.age += inc;
+                },
+                substract: function(dec){
+                    this.age -= dec;
+                },
+                sayHello: function(msg){
+                    alert(msg);
+                },
+                offsetXY: function(event){
+                    console.log(event);
+                    this.x = event.offsetX;
+                    this.y = event.offsetY;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

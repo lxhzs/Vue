@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>实例化</title>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h1>大家好，我叫{{ name }}</h1>
+        <h3>我今年{{ age }} 岁了！</h3>
+    </div>
+
+    <script>
+        // 实例化 vue 对象
+        new Vue({
+            el: "#vue-app", // 获取根容器
+            data: {         // 设置数据
+                name: "Ryan",
+                age: "18"
+            }
+        })
+    </script>
+</body>
+</html>

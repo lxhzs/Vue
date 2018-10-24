@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>双向数据绑定</title>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>双向数据绑定</h3>
+        <h4>ref 方法</h4>
+        <label>用户名</label>
+        <input type="text" ref="name" v-on:keyup="userName">
+        <p>{{ name }}</p>
+
+
+        <h4>v-model 方法</h4>
+        <label>年龄</label>
+        <input type="text" v-model="age">
+        <p>{{ age }}</p>
+
+        <h4>多选框</h4>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+
+        <h4>多个多选框</h4>
+        <input type="checkbox" id="checkbox1" value="checkbox1" v-model="checkedNames">
+        <label for="checkbox1">checkbox1</label>
+        <input type="checkbox" id="checkbox2" value="checkbox2"  v-model="checkedNames">
+        <label for="checkbox2">checkbox2</label>
+        <input type="checkbox" id="checkbox3" value="checkbox3"  v-model="checkedNames">
+        <label for="checkbox3">checkbox3</label>
+        <input type="checkbox" id="checkbox4" value="checkbox4"  v-model="checkedNames">
+        <label for="checkbox4">checkbox4</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+
+        <h4>单选框</h4>
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+
+        <h4>下拉框单选</h4>
+        <select v-model="selected">
+            <option disabled value="">请选择</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+        
+        
+        <h4>下拉框多选</h4>
+        <select v-model="selectedArr" multiple >
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <br/>
+        <span>Selected: {{ selectedArr }}</span>
+
+    </div>
+
+
+    <script>
+        // 实例化 vue 对象
+        new Vue({
+            el: "#vue-app", // 获取根容器
+            data: {         // 设置数据
+                name: '',
+                age: '',
+                checked: '',
+                checkedNames: [],
+                picked: '',
+                selected: '',
+                selectedArr: [],
+            },
+            methods: {
+                userName: function(){
+                    this.name = this.$refs.name.value;
+                },
+                
+            }
+        })
+    </script>
+</body>
+</html>

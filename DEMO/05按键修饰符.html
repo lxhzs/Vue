@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>按键修饰符</title>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>按键修饰符</h3>
+        <input v-on:keyup.enter="enter" type="text" placeholder="按下 enter 键触发">
+        <br>
+        <br>
+        <br>
+        <input v-on:keyup.ctrl.space="ctrlSpace" type="text" placeholder="同时按下 ctrl 和 空格键 触发">
+    </div>
+
+    <script>
+        // 实例化 vue 对象
+        new Vue({
+            el: "#vue-app", // 获取根容器
+            data: {         // 设置数据
+    
+            },
+            methods: {
+                enter: function(){
+                    alert("enter键被按下");
+                },
+                ctrlSpace: function(){
+                    alert("ctrl键 和 空格键 同时被按下");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>事件修饰符</title>
+    <style>
+        #canvas{
+            width: 600px;
+            padding: 200px 20px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        #stopArea{
+            padding: 2px 5px;
+            background: pink;
+        }
+        #stopArea2{
+            padding: 2px 5px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>阻止冒泡事件</h3>
+        <p>鼠标在粉色和红色区域移动事件无效</p>
+        <div id="canvas" v-on:mousemove="offsetXY">
+            {{x}},{{y}}
+            <br>
+            <br>
+            <span id="stopArea" v-on:mousemove="stopMoving">event事件停止移动</span>
+            <br>
+            <br>
+            <span id="stopArea2" v-on:mousemove.stop>修饰符.stop 停止移动 </span>
+        </div>
+
+
+        <h3>.once 只能点击一次</h3>
+        <button v-on:click.once="add(1)">涨一岁</button>
+        <button v-on:click.once="substract(1)">减一岁</button>
+        <p>我的年龄是：{{age}} 岁</p>
+
+
+        <h3>阻止默认事件</h3>
+        <a v-on:click.prevent="stopJump" href="http://lxhzs.top">点击我不跳转</a>
+    </div>
+
+    <script>
+        // 实例化 vue 对象
+        new Vue({
+            el: "#vue-app", // 获取根容器
+            data: {         // 设置数据
+                age: 30,
+                x: 0,
+                y: 0,
+            },
+            methods: {
+                add: function(inc){
+                    this.age += inc;
+                },
+                substract: function(dec){
+                    this.age -= dec;
+                },
+                sayHello: function(msg){
+                    alert(msg);
+                },
+                offsetXY: function(event){
+                    console.log(event);
+                    this.x = event.offsetX;
+                    this.y = event.offsetY;
+                },
+                stopMoving: function(event){
+                    event.stopPropagation();
+                },
+                stopJump: function(){
+                    alert("我出来之后，a标签不跳转");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

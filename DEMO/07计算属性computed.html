@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>计算属性</title>
+    <style>
+        #canvas{
+            width: 600px;
+            padding: 200px 20px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>计算属性 computed</h3>
+        <button v-on:click="a++">Add to A</button>
+        <button v-on:click="b++">Add to B</button>
+        <p>A - {{ a }}</p>
+        <p>B - {{ b }}</p>
+        <!-- 
+            当点击“Add to A” 的时候，“a++”，同时“Age + A”调用 “addToA”方法。
+            按照常理来说，控制台此时只会打印 "Add to A!"，并不会打印"Add to B!"，因为按钮“Add to B”并没有被触发。
+            但是在这里，不管你点击哪个按钮，下面的两个方法都会执行，一旦方法很多的时候，就会耗费性能
+         -->
+        <p>Age + A = {{ addToA() }}</p>
+        <p>Age + B = {{ addToB() }}</p>
+
+         
+        <h3>使用 computed</h3>
+        <button v-on:click="C_a++">C Add to A</button>
+        <button v-on:click="C_b++">C Add to B</button>
+        <p>C_A - {{ C_a }}</p>
+        <p>C_B - {{ C_b }}</p>
+        <p>C Age + A = {{ C_addToA }}</p>
+        <p>C Age + B = {{ C_addToB }}</p>
+    </div>
+
+    <script>
+        // 实例化 vue 对象
+        new Vue({
+            el: "#vue-app", // 获取根容器
+            data: {         // 设置数据
+                a: 0,
+                b: 0,
+                age: 30,
+                C_a: 0,
+                C_b: 0,
+                C_age: 30,
+            },
+            methods: {
+                addToA: function(inc){
+                    console.log("Add to A!");
+                    return this.age + this.a;
+                },
+                addToB: function(dec){
+                    console.log("Add to B!");
+                    return this.age + this.b;
+                },
+            },
+            computed: {
+                C_addToA: function(inc){
+                    console.log("C Add to A!");
+                    return this.C_age + this.C_a;
+                },
+                C_addToB: function(dec){
+                    console.log("C Add to B!");
+                    return this.C_age + this.C_b;
+                },
+            }
+        })
+    </script>
+</body>
+</html>

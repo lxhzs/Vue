@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>列表渲染</title>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>v-for 遍历数组</h3>
+        <ul v-for="name in names">
+            <li>{{ name }}</li>
+        </ul>
+
+        <h3>v-for 遍历数组添加索引</h3>
+        <ul v-for="(people,index) in peoples">
+            <li>序号{{index + 1}} &nbsp; 大家好，我叫：{{people.name}}，&nbsp;今年{{people.age}}岁</li>
+        </ul>
+
+        <h3>v-for 遍历对象</h3>
+        <ul v-for="value in role">
+            <li>{{ value }}</li>
+        </ul>
+
+        <h3>v-for 遍历对象添加键名</h3>
+        <ul v-for="(value,key) in role">
+            <li>{{key}}：{{ value }}</li>
+        </ul>
+
+        <h3>v-for 遍历对象添加键名索引</h3>
+        <ul v-for="(value,key,index) in role">
+            <li>序号{{index+1}}：&nbsp;{{key}}：{{ value }}</li>
+        </ul>
+    </div>
+    
+
+    <script>
+        new Vue({
+            el: '#vue-app',
+            data: {
+                names: ['张三','李四','王五','马六','田七'], 
+                peoples: [
+                    {name:'张三',age: 18},
+                    {name:'李四',age: 19},
+                    {name:'王五',age: 20},
+                    {name:'马六',age: 21},
+                    {name:'田七',age: 22},
+                ],
+                role: {
+                    roleName: '盖伦',
+                    age: '30',
+                    skill: '大宝剑',
+                }
+            },
+          
+        })
+    </script>
+</body>
+</html>

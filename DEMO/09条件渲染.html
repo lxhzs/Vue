@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>条件渲染</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            background: pink;
+            font-size: 24px;
+        }
+        .box2{
+            width: 180px;
+            height: 180px;
+            text-align: center;
+            background: orange;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app">
+        <h3>v-if v-else-if</h3>
+        <button @click="error = !error">Toggle Error</button>
+        <button @click="success = !success">Toggle Success</button>
+        <p v-if="error">网络连接错误 404</p>
+        <p v-else-if="success">网络连接成功 200</p>
+
+
+        <h3>多个条件渲染</h3>
+        <button @click="many = !many">切换盒子显示</button>
+        <br>
+        <br>
+        <template v-if="many">
+            <div class="box1">
+                <p>我是box1</p>    
+                <p>我是box1</p>    
+                <p>我是box1</p>    
+            </div>
+        </template>
+        <template v-else>
+            <div class="box2">
+                <p>我是box2</p> 
+                <p>我是box2</p> 
+                <p>我是box2</p> 
+            </div>
+        </template>
+    </div>
+    
+
+    <script>
+        new Vue({
+            el: '#vue-app',
+            data: {
+                error: false,
+                success: false,
+                many: true,
+            },
+          
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <title>实例化多个</title>
+</head>
+<body>
+    <!-- vue-app 根容器 -->
+    <div id="vue-app-one">
+        <h3>大家好，我叫{{ name }}</h3>
+        <h5>我今年{{ age }} 岁了！</h5>
+        <p>{{sayHello}}</p>
+    </div>
+
+    <div id="vue-app-two">
+            <h3>大家好，我叫{{ name }}</h3>
+            <h5>我今年{{ age }} 岁了！</h5>
+            <p>{{sayHello}}</p>
+
+            <button @click="changeOneName">改变 one 的名字</button>
+        </div>
+    <script>
+        // 实例化 vue 对象
+        var one = new Vue({
+            el: "#vue-app-one", // 获取根容器
+            data: {         // 设置数据
+                name: "Ryan",
+                age: "18",
+            },
+            computed: {
+                sayHello: function(){
+                    return "大家好，我是" + this.name;
+                },
+            },
+        })
+
+        var two = new Vue({
+            el: "#vue-app-two", // 获取根容器
+            data: {         // 设置数据
+                name: "levi",
+                age: "20",
+            },
+            methods: {
+                changeOneName: function(){
+                    one.name = "LiXinhua";
+                }
+            },
+            computed: {
+                sayHello: function(){
+                    return "大家好，我是" + this.name;
+                },
+            },
+        })
+    </script>
+</body>
+</html>

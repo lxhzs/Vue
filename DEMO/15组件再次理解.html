@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>组件</title>
+</head>
+
+<body>
+    <div id="vue-app">
+        <hello></hello>
+    </div>
+    <script>
+        Vue.component('hello',{
+            data(){
+                return {
+                    title: "这是我第一次创建的组件",
+                    describe: "",
+                }
+            },
+            methods: {
+                describes:function(){
+                    this.describe = "这是我添加的描述";
+                }
+            },
+            template: `<div>
+                            <h3>{{ title }}</h3>
+                            <button @click="describes()">增加描述</button>
+                            <p>{{describe}}</p>
+                       </div>`,
+        })
+
+        new Vue({
+            el: '#vue-app',
+        })
+    </script>
+</body>
+
+</html>
